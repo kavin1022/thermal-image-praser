@@ -18,18 +18,6 @@ const readHTMLFile = (file) => {
     return imgList;
 }
 
-const downloadFiles = () => {
-    console.log(imgList);
-    for(let i = 0; i < imgList.length; i++){
-        console.log(i);
-        let a = document.createElement("a"); //Create <a>
-        a.href = imgList[i]; //Image Base64 Goes here
-        a.download = `Image${i}.jpg`; //File name Here
-        a.click(); //Downloaded file
-    }
-
-}
-
 function download_files() {
     const files = imgList
     function download_next(i) {
