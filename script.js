@@ -81,7 +81,9 @@ const readTable = (file) => {
         start = file.indexOf("<tr ", index);
         end = file.indexOf("</table>", index);
         table = file.substring(start, end);
-        document.getElementById("summary").innerHTML = table;
+
+        document.getElementById("sumTitle").innerHTML += "Summary Table"
+        document.getElementById("summary").innerHTML += table;
         document.getElementById("tableWrapper").innerHTML += "<button onclick='downloadTableAsCSV()'>Download as CSV</button>"
     }
 
@@ -108,7 +110,7 @@ const downloadTableAsCSV = (table_id, separator = ',') => {
     }
     var csv_string = csv.join('\n');
     // Download it
-    var filename = 'export_' + table_id + '_' + new Date().toLocaleDateString() + '.csv';
+    var filename = "Summary_Table_" + new Date().toLocaleDateString() + '.csv';
     var link = document.createElement('a');
     link.style.display = 'none';
     link.setAttribute('target', '_blank');
