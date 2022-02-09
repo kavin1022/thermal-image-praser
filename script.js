@@ -1,16 +1,23 @@
 const readHTMLFile = (file) => {
     let imgList = [];
     let index = 0;
+    let start = 0;
     let end = 0;
 
+    //Loop through HTML file and add all thermal image and digital image to page
     while (index != -1) {
         index = index + 1;
-        index = file.indexOf("data:image", index);
+        index = file.indexOf("<img class", index);
+        
         if (index != -1) {
-            end = file.indexOf('"', index);
-            let curr = file.substring(index, end)
-            if (curr.includes("data:image/.png;base64,iVBOR") === false) {
-                imgList.push(file.substring(index, end));
+            start = file.indexOf("data:image", index);
+            end = file.indexOf('"', start);
+
+            //Only pushing thermal images and their originals, skipping all other images in the file
+            let n = file.substring(index, end)
+            if (n.includes("c8e987c58b") || n.includes("F80e661d47")){
+                imgList.push(file.substring(start, end));
+
             }
         }
     }
